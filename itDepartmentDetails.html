@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Members</title>
+    <style>
+        /* Style for the card container */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Style for the card */
+        .card {
+            width: calc(25% - 20px); /* Adjust card width for 3 cards per row */
+            max-height: 250px; /* Increase the maximum card height slightly */
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Add pointer cursor to indicate clickability */
+        }
+
+        /* Style for the second row cards */
+        .second-row .card {
+            width: calc(35% - 20px); /* Adjust card width for 2 cards per row */
+        }
+
+        /* Style for faculty member profile image */
+        .profile-image {
+            width: 100%;
+            height: 180px; /* Set a fixed height for the profile image container */
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .profile-image1 {
+            width: 300px;
+            height: 180px; /* Set a fixed height for the profile image container */
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Style for faculty member details */
+        .faculty-details {
+            margin-top: 15px;
+        }
+
+        /* Style for faculty member name */
+        .faculty-name {
+            font-weight: bold;
+        }
+
+        /* Style for faculty member department */
+        .faculty-department {
+            color: #100f0f;
+        }
+
+        /* Style for the qualification or title */
+        .faculty-qualification {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Style for the heading */
+        .heading {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Remove underlines from anchor links */
+        a {
+            text-decoration: none;
+        }
+
+        /* Style for faculty profile details */
+        .faculty-profile {
+            display: none; /* Hide the profile details by default */
+            padding: 20px;
+        }
+
+        /* Style for faculty details cards */
+        .faculty-details-card {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faculty-details-card1 {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center; /* Center content vertically within the card */
+        }
+
+        .profile-details-left {
+            flex: 1; /* Left div takes 50% of the card width */
+            text-align: center;
+        }
+
+        .profile-details-right {
+            flex: 1; /* Right div takes 50% of the card width */
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">IT Faculty Members</h1>
+    <div class="card-container">
+        <!-- Faculty Member 1 -->
+        <div class="card" onclick="showFacultyDetails(1)">
+            <a href="#show1">
+                <div class="profile-details-left">
+                    <img src="data:image/jpeg;base64,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" alt="Faculty Member 1" class="profile-image">
+                </div>
+                <div class="profile-details-right">
+                    <div class="faculty-name">John Doe, M.Tech</div>
+                    <div class="faculty-qualification">Professor</div>
+                    <div class="faculty-department">Department of IT</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Faculty Member 2 -->
+        <div class="card" onclick="showFacultyDetails(2)">
+            <a href="#show2">
+                <div class="profile-details-left">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRffLod75JIFqxmef3WORAFx6me0md5jI3ZhA&usqp=CAU" class="profile-image">
+                </div>
+                <div class="profile-details-right">
+                    <div class="faculty-name">Jane Smith, Ph.D</div>
+                    <div class="faculty-qualification">Associate Professor</div>
+                    <div class="faculty-department">Department of IT</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Faculty Member 3 -->
+        <div class="card" onclick="showFacultyDetails(3)">
+            <a href="#show3">
+                <div class="profile-details-left">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6DmYoHFvKIPTJbCNN9-wLkxnVH3AWpLopdsiQSCNTJK71WOU35iaVY-xY6IrxU3Z5-Jg&usqp=CAU" class="profile-image">
+                </div>
+                <div class="profile-details-right">
+                    <div class="faculty-name">Bob Johnson, M.Sc</div>
+                    <div class="faculty-qualification">Assistant Professor</div>
+                    <div class="faculty-department">Department of IT</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Faculty Member 4 -->
+        <div class="card" onclick="showFacultyDetails(4)">
+            <a href="#show4">
+                <div class="profile-details-left">
+                    <img src="data:image/jpeg;base64,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" class="profile-image">
+                </div>
+                <div class="profile-details-right">
+                    <div class="faculty-name">Alice Brown, Ph.D</div>
+                    <div class="faculty-qualification">Professor</div>
+                    <div class="faculty-department">Department of IT</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Faculty Member 5 -->
+        <div class="card" onclick="showFacultyDetails(5)">
+            <a href="#show5">
+                <div class="profile-details-left">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTLmWbnMqyakjGWI7RlS95d60ncAha7MWLcA&usqp=CAU" class="profile-image">
+                </div>
+                <div class="profile-details-right">
+                    <div class="faculty-name">David Wilson, M.Tech</div>
+                    <div class="faculty-qualification">Associate Professor</div>
+                    <div class="faculty-department">Department of IT</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Faculty Profile Details -->
+    <div class="faculty-profile" id="faculty-details">
+        <!-- JavaScript will populate faculty details here -->
+    </div>
+
+    <!-- Faculty Details Heading -->
+    <div>
+        <h2 class="heading">Faculty Details</h2>
+    
+        <div class="faculty-details-card1" id="show1">
+            <div class="profile-details-left">
+                <img src="data:image/jpeg;base64,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" alt="Faculty Member 1" class="profile-image1">
+            </div>
+            <div class="profile-details-right">
+                <div class="faculty-name"><h4>Name: </h4>John Doe, M.Tech</div>
+                <div class="faculty-qualification"><h4>Role: </h4>Professor</div>
+                <div class="faculty-department"><h4>Branch: </h4>Department of IT</div>
+                <div class="faculty-department"><h4>Experience: </h4> 20 years</div>
+                <div class="faculty-department"><h4>No.of Invigilations: </h4> 0 </div>
+                <div class="faculty-department"><h4>Last Invigilation: </h4> NA</div>
+
+            </div>
+        </div>
+
+        <!-- Faculty Member 2 -->
+        <div class="faculty-details-card1" id="show2">
+            <div class="profile-details-left">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRffLod75JIFqxmef3WORAFx6me0md5jI3ZhA&usqp=CAU" class="profile-image1">
+            </div>
+            <div class="profile-details-right">
+                <div class="faculty-name"><h4>Name: </h4>Jane Smith, Ph.D</div>
+                <div class="faculty-qualification"><h4>Role: </h4>Associate Professor</div>
+                <div class="faculty-department"><h4>Branch: </h4>Department of IT</div>
+                <div class="faculty-department"><h4>Experience: </h4> 10 years</div>
+                <div class="faculty-department"><h4>No.of Invigilations: </h4> 4 </div>
+                <div class="faculty-department"><h4>Last Invigilation: </h4> 23-9-23</div>
+            </div>
+        </div>
+
+        <!-- Faculty Member 3 -->
+        <div class="faculty-details-card1" id="show3">
+            <div class="profile-details-left">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6DmYoHFvKIPTJbCNN9-wLkxnVH3AWpLopdsiQSCNTJK71WOU35iaVY-xY6IrxU3Z5-Jg&usqp=CAU" class="profile-image1">
+            </div>
+            <div class="profile-details-right">
+                <div class="faculty-name"><h4>Name: </h4>Bob Johnson, M.Sc</div>
+                <div class="faculty-qualification"><h4>Role: </h4>Assistant Professor</div>
+                <div class="faculty-department"><h4>Branch: </h4>Department of IT</div>
+                <div class="faculty-department"><h4>Experience: </h4> 10 years</div>
+                <div class="faculty-department"><h4>No.of Invigilations: </h4> 4 </div>
+                <div class="faculty-department"><h4>Last Invigilation: </h4> 23-9-23</div>
+            </div>
+        </div>
+
+        <!-- Faculty Member 4 -->
+        <div class="faculty-details-card1" id="show4">
+            <div class="profile-details-left">
+                <img src="data:image/jpeg;base64,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" alt="Faculty Member 4" class="profile-image1">
+            </div>
+            <div class="profile-details-right">
+                <div class="faculty-name"><h4>Name: </h4>Alice Brown, Ph.D</div>
+                <div class="faculty-qualification"><h4>Role: </h4>Professor</div>
+                <div class="faculty-department"><h4>Branch: </h4>Department of IT</div>
+                <div class="faculty-department"><h4>Experience: </h4> 10 years</div>
+                <div class="faculty-department"><h4>No.of Invigilations: </h4> 0 </div>
+                <div class="faculty-department"><h4>Last Invigilation: </h4> NA</div>
+            </div>
+        </div>
+
+        <!-- Faculty Member 5 -->
+        <div class="faculty-details-card1" id="show5">
+            <div class="profile-details-left">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTLmWbnMqyakjGWI7RlS95d60ncAha7MWLcA&usqp=CAU" alt="Faculty Member 5" class="profile-image1">
+            </div>
+            <div class="profile-details-right">
+                <div class="faculty-name"><h4>Name: </h4>David Wilson, M.Tech</div>
+                <div class="faculty-qualification"><h4>Role: </h4>Associate Professor</div>
+                <div class="faculty-department"><h4>Branch: </h4>Department of IT</div>
+                <div class="faculty-department"><h4>Experience: </h4> 10 years</div>
+                <div class="faculty-department"><h4>No.of Invigilations: </h4> 4 </div>
+                <div class="faculty-department"><h4>Last Invigilation: </h4> 14-9-23</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

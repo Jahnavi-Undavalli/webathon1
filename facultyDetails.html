@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Faculty Details</h2>
+            <div id="facultyInfo">
+                <img src="" alt="Faculty Image" id="facultyImage">
+                <p>Name: <span id="facultyName"></span></p>
+                <p>Subject: <span id="facultySubject"></span></p>
+                <p>Experience: <span id="facultyExperience"></span> years</p>
+                <p>Number of Invigilations: <span id="facultyInvigilations"></span></p>
+                <p>Last Invigilation: <span id="facultyLastInvigilation"></span></p>
+                <p>Description: <span id="facultyDescription"></span></p>
+                <!-- Add more details as needed -->
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6DdHK4qZ5Q7uXnaOSi1tqfffKy9ToFog",
+        authDomain: "web1-a354f.firebaseapp.com",
+        databaseURL: "https://web1-a354f-default-rtdb.firebaseio.com",
+        projectId: "web1-a354f",
+        storageBucket: "web1-a354f.appspot.com",
+        messagingSenderId: "695528593695",
+        appId: "1:695528593695:web:211ed86166d4c3ed81382a",
+        measurementId: "G-5FZ8G0MM5Q"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Retrieve email from the query parameter
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const email = urlParams.get('email');
+
+        // Get faculty data based on the email
+        const userRef = ref(db, 'users2/' + email);
+        get(userRef)
+            .then((snapshot) => {
+                const userData = snapshot.val();
+                if (userData.username===username) {
+                    const userData = snapshot.val();
+                    // Display faculty details on the page
+                    document.getElementById("facultyImage").src = userData.imageURL;
+                    document.getElementById("facultyName").textContent = userData.username;
+                    document.getElementById("facultySubject").textContent = userData.subject;
+                    document.getElementById("facultyExperience").textContent = userData.experience;
+                    document.getElementById("facultyInvigilations").textContent = userData.invigilations;
+                    document.getElementById("facultyLastInvigilation").textContent = userData.lastInvigilation;
+                    document.getElementById("facultyDescription").textContent = userData.description;
+                } else {
+                    alert("Faculty member not found.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error retrieving faculty data:", error);
+            });
+    </script>
+</body>
+</html>
+
+

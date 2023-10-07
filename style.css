@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Cool blue background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 400px;
+    background-color: #fff; /* White background color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.container h2 {
+    color:navy; /* Cool blue text color */
+}
+
+.inputbox {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.inputbox input, .inputbox select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    background-color: #f2f2f2; /* Light gray background color */
+    border-radius: 5px;
+}
+
+.inputbox label {
+    color:black; /* Cool blue label text color */
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.sub {
+    width: 100%;
+    padding: 10px;
+    background-color: navy; /* Cool blue button background color */
+    color: #fff; /* White button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sub:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}

@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Firebase JavaScript SDK (Firebase CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"></script>
+</head>
+<body>
+    <script>
+        var firebaseConfig = {
+    apiKey: "AIzaSyDUPW0SRzndnonO5H7jlp0i8QJt_27OdQ8",
+      authDomain: "webathon-53cda.firebaseapp.com",
+      databaseURL: "https://webathon-53cda-default-rtdb.firebaseio.com",
+      projectId: "webathon-53cda",
+      storageBucket: "webathon-53cda.appspot.com",
+      messagingSenderId: "26891775422",
+      appId: "1:26891775422:web:e85b93847158f30e205def",
+      measurementId: "G-5H1GMP14RN"
+  };
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the Firebase Realtime Database
+        const database = firebase.database();
+
+        // Function to add a new department
+        function addDepartment(departmentData) {
+            const departmentRef = database.ref("departments");
+            const newDepartmentRef = departmentRef.push();
+            newDepartmentRef.set(departmentData);
+        }
+
+        // Function to add a new faculty
+        function addFaculty(facultyData) {
+            const facultyRef = database.ref("faculties");
+            const newFacultyRef = facultyRef.push();
+            newFacultyRef.set(facultyData);
+        }
+
+        // Function to add a new schedule
+        function addSchedule(scheduleData) {
+            const scheduleRef = database.ref("schedules");
+            const newScheduleRef = scheduleRef.push();
+            newScheduleRef.set(scheduleData);
+        }
+
+        // Function to add a new absentee statement
+        function addAbsenteeStatement(absenteeStatementData) {
+            const absenteeStatementRef = database.ref("absenteeStatements");
+            const newAbsenteeStatementRef = absenteeStatementRef.push();
+            newAbsenteeStatementRef.set(absenteeStatementData);
+        }
+
+        // Example usage for Department
+        const departmentData = {
+            name: "Computer Science",
+            headOfDepartment: "John Doe",
+            // Add other department properties here
+        };
+
+        addDepartment(departmentData);
+
+        // Example usage for Faculty
+        const facultyData = {
+            name: "John Doe",
+            department: "Computer Science",
+            // Add other faculty properties here
+        };
+
+        addFaculty(facultyData);
+
+        // Example usage for Schedule
+        const scheduleData = {
+            course: "Introduction to Programming",
+            faculty: "John Doe",
+            // Add other schedule properties here
+        };
+
+        addSchedule(scheduleData);
+
+        // Example usage for Absentee Statement
+        const absenteeStatementData = {
+            studentName: "Alice",
+            course: "Introduction to Programming",
+            date: "2023-10-15",
+            // Add other absentee statement properties here
+        };
+
+        addAbsenteeStatement(absenteeStatementData);
+    </script>
+</body>
+</html>
+

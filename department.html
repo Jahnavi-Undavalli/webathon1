@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departements</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensure the page fills the viewport height */
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            margin:5px;
+            font-size: 20px;
+
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center; /* Center vertically within the container */
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .card {
+            width: 200px; /* Decrease the card width */
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            background-color: #f2f2f2;
+        }
+
+        .card img {
+            width: 120px; /* Increase the size of the profile image */
+            height: 120px; /* Increase the size of the profile image */
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            font-size: 18px; /* Decrease the font size of the department name */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Departments</h1>
+    </header>
+
+
+    <div class="container">
+        <a href="cseDepartmentDetails.html" class="card">
+            <img src="https://as1.ftcdn.net/v2/jpg/05/36/56/78/1000_F_536567826_T3Qjig8yoNssSOSN0fQpWhrorG5TvjYC.jpg" alt="Admin Profile"/>
+            <h2>CSE Department</h2>
+            <!-- Add admin-related content here -->
+        </a>
+
+        <a href="eceDepartmentDetails.html" class="card">
+            <img src="https://t3.ftcdn.net/jpg/05/23/56/44/360_F_523564437_q658rP0xB7DtSBjqk5weIXjoeVvcuuug.jpg" alt="Department Incharge Profile">
+            <h2>ECE Department</h2>
+            <!-- Add department incharge-related content here -->
+        </a>
+
+        <a href="itDepartmentDetails.html" class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdoYl2dFGUGMUJKXKCZDcNHubEuKiRNjzXUg&usqp=CAU" alt="Faculty Profile">
+            <h2>IT Department</h2>
+            <!-- Add faculty-related content here -->
+        </a>
+    </div>
+
+</body>
+</html>

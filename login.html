@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="inputbox">
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <input type="submit" value="Login" class="sub" id="loginButton">
+            </form>
+            <div id="error"></div>
+            <p>New user? <a href="departmentRegistration.html">Create an account</a></p>
+        </div>
+    </div>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6DdHK4qZ5Q7uXnaOSi1tqfffKy9ToFog",
+        authDomain: "web1-a354f.firebaseapp.com",
+        databaseURL: "https://web1-a354f-default-rtdb.firebaseio.com",
+        projectId: "web1-a354f",
+        storageBucket: "web1-a354f.appspot.com",
+        messagingSenderId: "695528593695",
+        appId: "1:695528593695:web:211ed86166d4c3ed81382a",
+        measurementId: "G-5FZ8G0MM5Q"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        // Login form submission
+        document.getElementById("loginForm").addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessageElement = document.getElementById("error"); 
+
+            // Check if the user exists in the database
+            get(child(ref(db, 'user1'), username))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        if (userData.password === password) {
+                            // If the password matches, navigate to the home page
+                            window.location.href = "departmentFacultyDetails.html";
+                        } else {
+                            // Display an error message for incorrect password
+                            errorMessageElement.innerHTML = "Incorrect password";
+                            errorMessageElement.classList.add("black-text");
+                        }
+                    } else {
+                        // Display an error message for unknown username
+                        errorMessageElement.innerHTML = "Username not found";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error getting user data:", error);
+                });
+        });
+    </script>
+</body>
+</html>
